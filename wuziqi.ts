@@ -1,41 +1,43 @@
 /**画布 */
-var myCanvas = document.querySelector('#qipan') as HTMLCanvasElement;
+let myCanvas = document.querySelector('#qipan') as HTMLCanvasElement;
 /**悔棋按钮 */
-var btnhui = document.querySelector('.btnhui') as HTMLDivElement;
+let btnhui = document.querySelector('.btnhui') as HTMLDivElement;
 /**撤销按钮 */
-var btnche = document.querySelector('.btnche') as HTMLDivElement;
+let btnche = document.querySelector('.btnche') as HTMLDivElement;
 /**重置按钮 */
-var btncz = document.querySelector('.btncz') as HTMLDivElement;
+let btncz = document.querySelector('.btncz') as HTMLDivElement;
 /**撤棋状态； */
-var cheqi: boolean = false ;
+let cheqi: boolean = false ;
 /**悔棋状态； */
-var huiqi: boolean = false ;
-/**格子的尺寸的数量 */
-var size: number = 25, sizeNumber: number = 21;
+let huiqi: boolean = false ;
+/**格子的尺寸大小 */
+const size: number = 25;
+/**行列数 */
+const sizeNumber: number = 21;
 /**圆的半径 */
-var r: number = 10;
+const r: number = 10;
 /**最后一步的位置信息 */
-var weizi: number[] = [0, 0];
+let weizi: number[] = [0, 0];
 /**棋子颜色类型 */
 type Pawn = 0|1|3; 
-/**下棋颜色，1是红色，0是黑色； */
-var qiziColor: Pawn = 1;
+/**下棋颜色，1是红色，0是黑色*/
+let qiziColor: Pawn = 1;
 /**棋盘上位置的颜色信息 */
-var qiziColorData: Pawn[][] = new Array(sizeNumber);
-for (var i = 0; i < sizeNumber; i++) {
+let qiziColorData: Pawn[][] = new Array(sizeNumber);
+for (let i = 0; i < sizeNumber; i++) {
     qiziColorData[i] = new Array(sizeNumber);
 }
-for (var n = 0; n < sizeNumber; n++) {
-    for (var m = 0; m < sizeNumber; m++) {
+for (let n = 0; n < sizeNumber; n++) {
+    for (let m = 0; m < sizeNumber; m++) {
         qiziColorData[n][m] = 3;
     }
 }
-var ctx = myCanvas.getContext('2d') as CanvasRenderingContext2D;
+let ctx = myCanvas.getContext('2d') as CanvasRenderingContext2D;
 /**
  * 绘制棋盘
  */
 function qipan(): void {
-    for (i = 0; i < sizeNumber; i++) {
+    for (let i = 0; i < sizeNumber; i++) {
         ctx.beginPath();
         ctx.moveTo(0, size * i);
         ctx.lineTo(500, size * i);
@@ -64,10 +66,10 @@ function qizi(row: number, col: number, color: string): void {
  * @param e 事件
  */
 myCanvas.onclick = function (e: MouseEvent): void {
-    var x: number = e.clientX - myCanvas.offsetLeft;
-    var y: number = e.clientY - myCanvas.offsetTop;
-    var i: number = Math.round(x / size);
-    var j: number = Math.round(y / size);
+    let x: number = e.clientX - myCanvas.offsetLeft;
+    let y: number = e.clientY - myCanvas.offsetTop;
+    let i: number = Math.round(x / size);
+    let j: number = Math.round(y / size);
     weizi = [i, j];
     if (qiziColorData[i][j] == 3) {
         if (qiziColor) {
