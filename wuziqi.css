@@ -1,0 +1,17 @@
+#qipan {
+    margin: auto;
+    display: block;
+}
+.btn{
+    margin: auto;
+    width: 100px;
+    height: 500px;
+}
+
+.btnhui,
+.btnche,
+.btncz{
+    margin: 10px;
+    border: 1px solid black;
+    text-align: center;
+}
